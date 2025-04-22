@@ -27,5 +27,18 @@ public class WaitlistTest {
     w.removeStudents(new HashSet<>());
     assertTrue(Arrays.equals(w.getWaitlist(), new String[]{"a", "b", "c", null, null}));
   }
+  @Test
+  public void testRemoveAll() {
+    Waitlist w = new Waitlist(new String[]{"a", "b"}, 3);
+    w.removeStudents(new HashSet<>(Arrays.asList("a", "b")));
+    assertTrue(Arrays.equals(w.getWaitlist(), new String[]{null, null, null}));
+  }
+
+  @Test
+  public void testRemoveWithNullsInMiddle() {
+    Waitlist w = new Waitlist(new String[]{"a", "b", "c"}, 5);
+    w.removeStudents(new HashSet<>(Arrays.asList("b")));
+    assertTrue(Arrays.equals(w.getWaitlist(), new String[]{"a", "c", null, null, null}));
+  }
 
 }
