@@ -54,5 +54,10 @@ public class WaitlistTest {
     w.removeStudents(new HashSet<>(Arrays.asList("first", "last")));
     assertTrue(Arrays.equals(w.getWaitlist(), new String[]{"mid", null, null, null, null}));
   }
-
+  @Test
+  public void testEmptyWaitlist() {
+    Waitlist w = new Waitlist(new String[]{}, 3);
+    w.removeStudents(new HashSet<>(Arrays.asList("anything")));
+    assertTrue(Arrays.equals(w.getWaitlist(), new String[]{null, null, null}));
+  }
 }
